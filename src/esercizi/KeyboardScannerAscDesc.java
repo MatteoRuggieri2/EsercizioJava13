@@ -8,8 +8,10 @@ public class KeyboardScannerAscDesc {
 
 	public void run() {
 		
-		int arraySize = getArraySize();
+		int arraySize = getArraySize(); // BUG -> Sistema il -1 in caso di stringa (METTI RICHIESTA INFINITA FINO A QUANDO NON RICEVI UN INT)
 		System.out.println(arraySize);
+		
+		int[] arrayElements = getArrayElements(arraySize);
 
 		
 		
@@ -81,6 +83,16 @@ public class KeyboardScannerAscDesc {
 			return -1;
 		}
 
+	}
+	
+	private int[] getArrayElements(int n) {
+		int[] myArray = new int[n];
+		for (int i = 0; i < n; i++) {
+			Scanner sc = new Scanner(System.in);
+			System.out.println("Inserisci elemento array: ");
+			myArray[i] = sc.nextInt();
+		}
+		return myArray;
 	}
 
 }

@@ -94,5 +94,16 @@ public class KeyboardScannerAscDesc {
 		}
 		return myArray;
 	}
+	
+	private String getOrder() {
+		Scanner sc = new Scanner(System.in);
+		String order = sc.next();
+		while (order.equals("ASC") || order.equals("DESC")) {
+			System.out.println("Inserisci l'ordine: ");
+			order = sc.next();
+			
+		}
+		return order;
+	}
 
 }

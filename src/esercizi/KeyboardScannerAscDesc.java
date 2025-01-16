@@ -6,10 +6,8 @@ public class KeyboardScannerAscDesc {
 
 	public void run() {
 		
-		int arraySize = getArraySize("Inserisci il numero di elementi che deve avere l'array, e premi \"Enter\"");
-		System.out.println(arraySize);
-		
-//		int[] arrayElements = getArrayElements(arraySize);
+		int arraySize = getArraySize("Inserisci il numero di elementi che deve avere l'array, e premi \"Enter\"");		
+		int[] arrayElements = getArrayElements(arraySize);
 
 		
 		
@@ -77,7 +75,32 @@ public class KeyboardScannerAscDesc {
 	 * Se ciò che viene fornito dall'utente non è di tipo int positivo verrà
 	 * richiesto all'infinito. */
 	public int getArraySize(String prompt) {
-		
+		return getValidPositiveInteger(prompt);
+	}
+
+	/* Questo metodo ritorna un array con i valori inseriti dall'utente */
+	private int[] getArrayElements(int n) {
+		int[] myArray = new int[n];
+		for (int i = 0; i < n; i++) {
+			Scanner sc = new Scanner(System.in);
+			System.out.println("Inserisci elemento array: ");
+			myArray[i] = sc.nextInt();
+		}
+		return myArray;
+	}
+	
+	private String getOrder() {
+		Scanner sc = new Scanner(System.in);
+		String order = sc.next();
+		while (order.equals("ASC") || order.equals("DESC")) {
+			System.out.println("Inserisci l'ordine: ");
+			order = sc.next();
+			
+		}
+		return order;
+	}
+	
+	private int getValidPositiveInteger(String prompt) {
 		Scanner sc = new Scanner(System.in);
 		String errorMessage = "\nERROR:\nInput non valido. Per favore, inserisci un numero intero positivo.\n";
 		
@@ -98,28 +121,6 @@ public class KeyboardScannerAscDesc {
 		        sc.next(); // Consuma il token non valido
 		    }
 		}
-	}
-
-	
-	private int[] getArrayElements(int n) {
-		int[] myArray = new int[n];
-		for (int i = 0; i < n; i++) {
-			Scanner sc = new Scanner(System.in);
-			System.out.println("Inserisci elemento array: ");
-			myArray[i] = sc.nextInt();
-		}
-		return myArray;
-	}
-	
-	private String getOrder() {
-		Scanner sc = new Scanner(System.in);
-		String order = sc.next();
-		while (order.equals("ASC") || order.equals("DESC")) {
-			System.out.println("Inserisci l'ordine: ");
-			order = sc.next();
-			
-		}
-		return order;
 	}
 
 }

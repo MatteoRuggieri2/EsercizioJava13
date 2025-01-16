@@ -8,8 +8,8 @@ public class KeyboardScannerAscDesc {
 		
 		int arraySize = getArraySize("Inserisci il numero di elementi che deve avere l'array, e premi \"Enter\"");		
 		int[] arrayElements = getArrayElements(arraySize);
-
 		
+		printArray("Array iniziale", arrayElements);
 		
 //		// Chiedo di inserire il numero di elementi, salvo il valore e lo stampo
 //		System.out.println("Inserisci il numero di elementi che deve avere l'array");
@@ -82,11 +82,20 @@ public class KeyboardScannerAscDesc {
 	private int[] getArrayElements(int n) {
 		int[] myArray = new int[n];
 		for (int i = 0; i < n; i++) {
-			Scanner sc = new Scanner(System.in);
-			System.out.println("Inserisci elemento array: ");
-			myArray[i] = sc.nextInt();
+			myArray[i] = getValidInteger("Aggiungi elemento all'array - [pos: " + i + "]");
 		}
 		return myArray;
+	}
+	
+	// Questo metodo stampa gli array
+	private void printArray(String arrName, int[] array) {
+		String arrToString = "[";
+		for (int el : array) {
+			arrToString += ", " + el;
+		}
+		arrToString = arrToString.replaceFirst(", ", "");
+		arrToString += "]\n";
+		System.out.println(arrName + ": " + arrToString);
 	}
 	
 	private String getOrder() {
@@ -116,6 +125,29 @@ public class KeyboardScannerAscDesc {
 		            System.out.println(errorMessage);
 		            // Non consumo ulteriori token, dato che inInt è già stato letto
 		        }
+		    } else {
+		        System.out.println(errorMessage);
+		        sc.next(); // Consuma il token non valido
+		    }
+		}
+	}
+	
+	private int getValidInteger(String prompt) {
+		Scanner sc = new Scanner(System.in);
+		String errorMessage = "\nERROR:\nInput non valido. Per favore, inserisci un numero intero.\n";
+		
+		// Finchè non ottengo un int positvo
+		while (true) {
+		    System.out.println(prompt);
+
+		    if (sc.hasNextInt()) {
+		        int inInt = sc.nextInt(); // Leggo il numero intero
+//		        if (inInt > 0) {
+		            return inInt; // Se positivo, ritorno il valore
+//		        } else {
+//		            System.out.println(errorMessage);
+		            // Non consumo ulteriori token, dato che inInt è già stato letto
+//		        }
 		    } else {
 		        System.out.println(errorMessage);
 		        sc.next(); // Consuma il token non valido

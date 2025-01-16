@@ -9,7 +9,10 @@ public class KeyboardScannerAscDesc {
 		int arraySize = getArraySize("Inserisci il numero di elementi che deve avere l'array, e premi \"Enter\"");		
 		int[] arrayElements = getArrayElements(arraySize);
 		
+		String order = getOrder();
+		
 		printArray("Array iniziale", arrayElements);
+		System.out.println("Ordinamento scelto: " + order);
 		
 //		// Chiedo di inserire il numero di elementi, salvo il valore e lo stampo
 //		System.out.println("Inserisci il numero di elementi che deve avere l'array");
@@ -98,17 +101,33 @@ public class KeyboardScannerAscDesc {
 		System.out.println(arrName + ": " + arrToString);
 	}
 	
+	/* Questo metodo ha il compito di recuperare la scelta dell'utente sull'ordinamento
+	 * dell'array */
 	private String getOrder() {
 		Scanner sc = new Scanner(System.in);
-		String order = sc.next();
-		while (order.equals("ASC") || order.equals("DESC")) {
-			System.out.println("Inserisci l'ordine: ");
-			order = sc.next();
+		String errorMessage = "\nERROR:\nInput non valido. Per favore, inserisci \"ASC\" o \"DESC\"";
+		String order = "";
+		
+		while (true) {
+			System.out.println("Scegli ordinamento tra ASC o DESC");
+			
+			if (sc.hasNext()) {
+				order = sc.next();
+			} else {
+				System.out.println(errorMessage);
+			}
+			
+			if (order.toUpperCase().equals("ASC") || order.toUpperCase().equals("DESC")) {
+				sc.close();
+				return order.toUpperCase();
+			} else {
+				System.out.println(errorMessage);
+			}
 			
 		}
-		return order;
 	}
 	
+	// Questo metodo ha il compito di validare il numero intero fornito dall'utente
 	private int getValidPositiveInteger(String prompt) {
 		Scanner sc = new Scanner(System.in);
 		String errorMessage = "\nERROR:\nInput non valido. Per favore, inserisci un numero intero positivo.\n";
@@ -132,6 +151,7 @@ public class KeyboardScannerAscDesc {
 		}
 	}
 	
+	// Questo metodo ha il compito di fornire un intero valido da parte dell'utente
 	private int getValidInteger(String prompt) {
 		Scanner sc = new Scanner(System.in);
 		String errorMessage = "\nERROR:\nInput non valido. Per favore, inserisci un numero intero.\n";
@@ -142,12 +162,7 @@ public class KeyboardScannerAscDesc {
 
 		    if (sc.hasNextInt()) {
 		        int inInt = sc.nextInt(); // Leggo il numero intero
-//		        if (inInt > 0) {
-		            return inInt; // Se positivo, ritorno il valore
-//		        } else {
-//		            System.out.println(errorMessage);
-		            // Non consumo ulteriori token, dato che inInt è già stato letto
-//		        }
+		        return inInt;
 		    } else {
 		        System.out.println(errorMessage);
 		        sc.next(); // Consuma il token non valido

@@ -1,5 +1,6 @@
 package esercizi;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class KeyboardScannerAscDesc {
@@ -11,8 +12,9 @@ public class KeyboardScannerAscDesc {
 		
 		String order = getOrder();
 		
-		printArray("Array iniziale", arrayElements);
+		System.out.println("Numero di elementi: " + arraySize);
 		System.out.println("Ordinamento scelto: " + order);
+		printArray("Array iniziale", arrayElements);
 		
 //		// Chiedo di inserire il numero di elementi, salvo il valore e lo stampo
 //		System.out.println("Inserisci il numero di elementi che deve avere l'array");
@@ -168,6 +170,12 @@ public class KeyboardScannerAscDesc {
 		        sc.next(); // Consuma il token non valido
 		    }
 		}
+	}
+	
+	// Questo metodo ha il compito di ordinare in modo ASC un arr di int
+	private int[] orderByAsc(int[] arr) {
+		Arrays.sort(arr);
+		return arr;
 	}
 
 }

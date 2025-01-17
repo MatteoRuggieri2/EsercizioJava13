@@ -121,7 +121,7 @@ public class KeyboardScannerAscDesc {
 				System.out.println(errorMessage);
 			}
 			
-			if (order.toUpperCase().equals("ASC") || order.toUpperCase().equals("DESC")) {
+			if (order.equalsIgnoreCase("ASC") || order.equalsIgnoreCase("DESC")) {
 				sc.close();
 				return order.toUpperCase();
 			} else {
@@ -143,6 +143,7 @@ public class KeyboardScannerAscDesc {
 		    if (sc.hasNextInt()) {
 		        int inInt = sc.nextInt(); // Leggo il numero intero
 		        if (inInt > 0) {
+		        	sc.close();
 		            return inInt; // Se positivo, ritorno il valore
 		        } else {
 		            System.out.println(errorMessage);
@@ -166,6 +167,7 @@ public class KeyboardScannerAscDesc {
 
 		    if (sc.hasNextInt()) {
 		        int inInt = sc.nextInt(); // Leggo il numero intero
+		        sc.close();
 		        return inInt;
 		    } else {
 		        System.out.println(errorMessage);
@@ -174,6 +176,8 @@ public class KeyboardScannerAscDesc {
 		}
 	}
 	
+	/* Questo metodo ordina l'array passato come argomento in base all'ordinamento
+	scelto dall'utente */
 	private int[] orderArray(int[] arr, String order) {
 		if (order.equalsIgnoreCase("ASC")) {
 			return orderByAsc(arr);
@@ -190,6 +194,9 @@ public class KeyboardScannerAscDesc {
 	
 	private int[] orderByDesc(int[] arr) {
 		System.out.println("Da ordinare in DESC");
+		
+		//TODO Usa Comparator
+		
 		return null;
 	}
 

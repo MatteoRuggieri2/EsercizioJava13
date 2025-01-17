@@ -16,6 +16,8 @@ public class KeyboardScannerAscDesc {
 		System.out.println("Ordinamento scelto: " + order);
 		printArray("Array iniziale", arrayElements);
 		
+		printArray("Array ordinato", orderArray(arrayElements, order));
+		
 //		// Chiedo di inserire il numero di elementi, salvo il valore e lo stampo
 //		System.out.println("Inserisci il numero di elementi che deve avere l'array");
 //		int userInputElementsNumber = 0;
@@ -172,10 +174,23 @@ public class KeyboardScannerAscDesc {
 		}
 	}
 	
+	private int[] orderArray(int[] arr, String order) {
+		if (order.equalsIgnoreCase("ASC")) {
+			return orderByAsc(arr);
+		} else {
+			return orderByDesc(arr);
+		}
+	}
+	
 	// Questo metodo ha il compito di ordinare in modo ASC un arr di int
 	private int[] orderByAsc(int[] arr) {
 		Arrays.sort(arr);
 		return arr;
+	}
+	
+	private int[] orderByDesc(int[] arr) {
+		System.out.println("Da ordinare in DESC");
+		return null;
 	}
 
 }

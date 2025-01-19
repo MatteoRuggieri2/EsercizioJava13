@@ -11,13 +11,13 @@ public class KeyboardScannerAscDesc {
 		int arraySize = getArraySize("Inserisci il numero di elementi che deve avere l'array, e premi \"Enter\"");		
 		int[] arrayElements = getArrayElements(arraySize);
 		
-//		String order = getOrder();
-//		
-//		System.out.println("Numero di elementi: " + arraySize);
-//		System.out.println("Ordinamento scelto: " + order);
-//		printArray("Array iniziale", arrayElements);
-//		
-//		printArray("Array ordinato", orderArray(arrayElements, order));
+		String order = getOrder();
+		
+		System.out.println("Numero di elementi: " + arraySize);
+		System.out.println("Ordinamento scelto: " + order);
+		printArray("Array iniziale", arrayElements);
+		
+		printArray("Array ordinato", orderArray(arrayElements, order));
 		
 	}
 	
@@ -67,7 +67,7 @@ public class KeyboardScannerAscDesc {
 			}
 			
 			if (order.equalsIgnoreCase("ASC") || order.equalsIgnoreCase("DESC")) {
-				sc.close();
+				
 				return order.toUpperCase();
 			} else {
 				System.out.println(errorMessage);
@@ -88,7 +88,6 @@ public class KeyboardScannerAscDesc {
 		    if (sc.hasNextInt()) {
 		        int inInt = sc.nextInt(); // Leggo il numero intero
 		        if (inInt > 0) {
-		        	sc.close();
 		            return inInt; // Se positivo, ritorno il valore
 		        } else {
 		            System.out.println(errorMessage);
@@ -112,13 +111,10 @@ public class KeyboardScannerAscDesc {
 
 		    if (sc.hasNextInt()) {
 		        int inInt = sc.nextInt(); // Leggo il numero intero
-//		        sc.close();
 		        return inInt;
 		    } else {
 		        System.out.println(errorMessage);
-		        sc.next(); // Consuma il token non valido  
-		        //todo BUG
-		        // va in errore perchè quando cerca il token, non è stato ancora inserito
+		        sc.next(); // Consuma il token non valido
 		    }
 		}
 	}

@@ -1,6 +1,7 @@
 package esercizi;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class KeyboardScannerAscDesc {
@@ -10,70 +11,14 @@ public class KeyboardScannerAscDesc {
 		int arraySize = getArraySize("Inserisci il numero di elementi che deve avere l'array, e premi \"Enter\"");		
 		int[] arrayElements = getArrayElements(arraySize);
 		
-		String order = getOrder();
+//		String order = getOrder();
+//		
+//		System.out.println("Numero di elementi: " + arraySize);
+//		System.out.println("Ordinamento scelto: " + order);
+//		printArray("Array iniziale", arrayElements);
+//		
+//		printArray("Array ordinato", orderArray(arrayElements, order));
 		
-		System.out.println("Numero di elementi: " + arraySize);
-		System.out.println("Ordinamento scelto: " + order);
-		printArray("Array iniziale", arrayElements);
-		
-		printArray("Array ordinato", orderArray(arrayElements, order));
-		
-//		// Chiedo di inserire il numero di elementi, salvo il valore e lo stampo
-//		System.out.println("Inserisci il numero di elementi che deve avere l'array");
-//		int userInputElementsNumber = 0;
-//		
-//		try {
-//			userInputElementsNumber = scanner.nextInt();
-//		} catch (InputMismatchException e) {
-//			System.err.println("Errore input. Riavvia il programma");
-//			scanner.close();
-//		}
-//		System.out.println("Numero di elementi richiesti: " + userInputElementsNumber);
-//		
-//		
-//		
-//		
-//		
-//		// Chiedo in che ordine vuole l'array, salvo il valore e lo stampo
-//		System.out.println("Scegli l'ordinamento array tra 'ASC' O 'DESC'");
-//		String userInputElementsOrder = scanner.next();
-//		System.out.println("Ordine scelto: " + userInputElementsOrder);
-//		
-//		
-//		// Creo l'array della lunghezza indicata (di default tutti i valori sono 0)
-//		int numArray[] = new int[userInputElementsNumber];
-//		
-//		for (int i = 0; i < userInputElementsNumber; i++) {
-//			System.out.println("Digita il valore n° " + (i + 1));
-//			numArray[i] = scanner.nextInt();
-//		}
-//		
-//		// Stampo array primitivo
-//		for (int element : numArray) {
-//			System.out.println(element);
-//		}
-//		
-//		// ORDINE ASC
-//		// Ordino l'array in ordine crescente
-//		Arrays.sort(numArray);
-//		
-//		// Stampo array primitivo
-//		for (int element : numArray) {
-//			System.out.println(element);
-//		}
-//		
-//		int[] numArraySorted = numArray;
-//		
-//		
-//		// ORDINE DESC
-//		// Utilizziamo un comparatore personalizzato per l'ordinamento decrescente
-//        Arrays.sort(array, new Comparator<Integer>() {
-//            @Override
-//            public int compare(Integer a, Integer b) {
-//                // Ordinamento decrescente
-//                return b.compareTo(a);
-//            }
-//        });
 	}
 	
 	
@@ -161,17 +106,19 @@ public class KeyboardScannerAscDesc {
 		Scanner sc = new Scanner(System.in);
 		String errorMessage = "\nERROR:\nInput non valido. Per favore, inserisci un numero intero.\n";
 		
-		// Finchè non ottengo un int positvo
+		// Finchè non ottengo un int
 		while (true) {
 		    System.out.println(prompt);
 
 		    if (sc.hasNextInt()) {
 		        int inInt = sc.nextInt(); // Leggo il numero intero
-		        sc.close();
+//		        sc.close();
 		        return inInt;
 		    } else {
 		        System.out.println(errorMessage);
-		        sc.next(); // Consuma il token non valido
+		        sc.next(); // Consuma il token non valido  
+		        //todo BUG
+		        // va in errore perchè quando cerca il token, non è stato ancora inserito
 		    }
 		}
 	}
@@ -193,11 +140,24 @@ public class KeyboardScannerAscDesc {
 	}
 	
 	private int[] orderByDesc(int[] arr) {
-		System.out.println("Da ordinare in DESC");
 		
-		//TODO Usa Comparator
+		// Converto l'array primitivo in un array di oggetti (utilizzabile da comparator)
+		// Converti int[] a Integer[]
+		Integer[] arrObj = Arrays.stream(arr).boxed().toArray(Integer[]::new);
 		
-		return null;
+		// Utilizziamo un comparatore personalizzato per l'ordinamento decrescente
+        Arrays.sort(arrObj, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer a, Integer b) {
+                // Ordinamento decrescente
+                return b.compareTo(a);
+            }
+        });
+        
+        // Ritorno l'array convertito da Integer[] a int[]
+        return Arrays.stream(arrObj)
+                .mapToInt(Integer::intValue) // Converte ogni Integer in int
+                .toArray();
 	}
 
-}
+} 

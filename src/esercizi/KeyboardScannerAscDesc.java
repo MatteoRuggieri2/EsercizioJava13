@@ -32,11 +32,11 @@ public class KeyboardScannerAscDesc {
 
 	/* Questo metodo ritorna un array con i valori inseriti dall'utente */
 	private int[] getArrayElements(int n) {
-		int[] myArray = new int[n];
+		int[] arr = new int[n];
 		for (int i = 0; i < n; i++) {
-			myArray[i] = getValidInteger("Aggiungi elemento all'array - [pos: " + i + "]");
+			arr[i] = getValidInteger("Aggiungi elemento all'array - [pos: " + i + "]");
 		}
-		return myArray;
+		return arr;
 	}
 	
 	// Questo metodo stampa gli array

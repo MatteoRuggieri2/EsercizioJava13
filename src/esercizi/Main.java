@@ -14,8 +14,8 @@ public class Main {
 		 *  Il comparatore è una classe anonima che implementa il comparator
 		 *  */
 		
-		KeyboardScannerAscDesc dsad = new KeyboardScannerAscDesc();
-		dsad.run();
+		KeyboardScannerAscDesc ksad = new KeyboardScannerAscDesc();
+		ksad.run();
 		
 	}
 

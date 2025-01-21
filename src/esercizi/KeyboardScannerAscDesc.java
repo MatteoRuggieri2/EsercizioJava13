@@ -54,7 +54,7 @@ public class KeyboardScannerAscDesc {
 	 * dell'array */
 	private String getOrder() {
 		Scanner sc = new Scanner(System.in);
-		String errorMessage = "\nERROR:\nInput non valido. Per favore, inserisci \"ASC\" o \"DESC\"";
+		String errorMessage = "\nERROR:\nInput non valido. Per favore, inserisci \"ASC\" (crescente) o \"DESC\" (decrescente)";
 		String order = "";
 		
 		while (true) {
@@ -63,14 +63,14 @@ public class KeyboardScannerAscDesc {
 			if (sc.hasNext()) {
 				order = sc.next();
 			} else {
-				System.out.println(errorMessage);
+				System.err.println(errorMessage);
 			}
 			
 			if (order.equalsIgnoreCase("ASC") || order.equalsIgnoreCase("DESC")) {
 				
 				return order.toUpperCase();
 			} else {
-				System.out.println(errorMessage);
+				System.err.println(errorMessage);
 			}
 			
 		}
@@ -90,11 +90,11 @@ public class KeyboardScannerAscDesc {
 		        if (inInt > 0) {
 		            return inInt; // Se positivo, ritorno il valore
 		        } else {
-		            System.out.println(errorMessage);
+		            System.err.println(errorMessage);
 		            // Non consumo ulteriori token, dato che inInt è già stato letto
 		        }
 		    } else {
-		        System.out.println(errorMessage);
+		        System.err.println(errorMessage);
 		        sc.next(); // Consuma il token non valido
 		    }
 		}
@@ -113,7 +113,7 @@ public class KeyboardScannerAscDesc {
 		        int inInt = sc.nextInt(); // Leggo il numero intero
 		        return inInt;
 		    } else {
-		        System.out.println(errorMessage);
+		        System.err.println(errorMessage);
 		        sc.next(); // Consuma il token non valido
 		    }
 		}

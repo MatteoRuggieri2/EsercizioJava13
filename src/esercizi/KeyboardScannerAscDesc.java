@@ -11,7 +11,7 @@ public class KeyboardScannerAscDesc {
 		Scanner sc = new Scanner(System.in);
 		
 		int arraySize = getArraySize(sc, "Inserisci il numero di elementi che deve avere l'array, e premi \"Enter\"");		
-		int[] arrayElements = getArrayElements(arraySize);
+		int[] arrayElements = getArrayElements(sc, arraySize);
 		
 		String order = getOrder();
 		
@@ -33,10 +33,10 @@ public class KeyboardScannerAscDesc {
 	}
 
 	/* Questo metodo ritorna un array con i valori inseriti dall'utente */
-	protected int[] getArrayElements(int n) {
+	protected int[] getArrayElements(Scanner sc, int n) {
 		int[] arr = new int[n];
 		for (int i = 0; i < n; i++) {
-			arr[i] = getValidInteger("Aggiungi elemento all'array - [pos: " + i + "]");
+			arr[i] = getValidInteger(sc, "Aggiungi elemento all'array - [pos: " + i + "]");
 		}
 		return arr;
 	}
@@ -102,8 +102,7 @@ public class KeyboardScannerAscDesc {
 	}
 	
 	// Questo metodo ha il compito di fornire un intero valido da parte dell'utente
-	protected int getValidInteger(String prompt) {
-		Scanner sc = new Scanner(System.in);
+	protected int getValidInteger(Scanner sc, String prompt) {
 		String errorMessage = "\nERROR:\nInput non valido. Per favore, inserisci un numero intero.\n";
 		
 		// Finchè non ottengo un int

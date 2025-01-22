@@ -26,12 +26,12 @@ public class KeyboardScannerAscDesc {
 	 * la dimensione dell'array.
 	 * Se ciò che viene fornito dall'utente non è di tipo int positivo verrà
 	 * richiesto all'infinito. */
-	public int getArraySize(String prompt) {
+	protected int getArraySize(String prompt) {
 		return getValidPositiveInteger(prompt);
 	}
 
 	/* Questo metodo ritorna un array con i valori inseriti dall'utente */
-	private int[] getArrayElements(int n) {
+	protected int[] getArrayElements(int n) {
 		int[] arr = new int[n];
 		for (int i = 0; i < n; i++) {
 			arr[i] = getValidInteger("Aggiungi elemento all'array - [pos: " + i + "]");
@@ -40,7 +40,7 @@ public class KeyboardScannerAscDesc {
 	}
 	
 	// Questo metodo stampa gli array
-	private void printArray(String arrName, int[] array) {
+	protected void printArray(String arrName, int[] array) {
 		String arrToString = "[";
 		for (int el : array) {
 			arrToString += ", " + el;
@@ -52,7 +52,7 @@ public class KeyboardScannerAscDesc {
 	
 	/* Questo metodo ha il compito di recuperare la scelta dell'utente sull'ordinamento
 	 * dell'array */
-	private String getOrder() {
+	protected String getOrder() {
 		Scanner sc = new Scanner(System.in);
 		String errorMessage = "\nERROR:\nInput non valido. Per favore, inserisci \"ASC\" (crescente) o \"DESC\" (decrescente)";
 		String order = "";
@@ -77,7 +77,7 @@ public class KeyboardScannerAscDesc {
 	}
 	
 	// Questo metodo ha il compito di validare il numero intero fornito dall'utente
-	private int getValidPositiveInteger(String prompt) {
+	protected int getValidPositiveInteger(String prompt) {
 		Scanner sc = new Scanner(System.in);
 		String errorMessage = "\nERROR:\nInput non valido. Per favore, inserisci un numero intero positivo.\n";
 		
@@ -101,7 +101,7 @@ public class KeyboardScannerAscDesc {
 	}
 	
 	// Questo metodo ha il compito di fornire un intero valido da parte dell'utente
-	private int getValidInteger(String prompt) {
+	protected int getValidInteger(String prompt) {
 		Scanner sc = new Scanner(System.in);
 		String errorMessage = "\nERROR:\nInput non valido. Per favore, inserisci un numero intero.\n";
 		
@@ -121,7 +121,7 @@ public class KeyboardScannerAscDesc {
 	
 	/* Questo metodo ordina l'array passato come argomento in base all'ordinamento
 	scelto dall'utente */
-	private int[] orderArray(int[] arr, String order) {
+	protected int[] orderArray(int[] arr, String order) {
 		if (order.equalsIgnoreCase("ASC")) {
 			return orderByAsc(arr);
 		} else {
@@ -130,12 +130,12 @@ public class KeyboardScannerAscDesc {
 	}
 	
 	// Questo metodo ha il compito di ordinare in modo ASC un arr di int
-	private int[] orderByAsc(int[] arr) {
+	protected int[] orderByAsc(int[] arr) {
 		Arrays.sort(arr);
 		return arr;
 	}
 	
-	private int[] orderByDesc(int[] arr) {
+	protected int[] orderByDesc(int[] arr) {
 		
 		// Converto l'array primitivo in un array di oggetti (utilizzabile da comparator)
 		// Converti int[] a Integer[]

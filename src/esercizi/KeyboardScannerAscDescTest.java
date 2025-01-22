@@ -20,7 +20,7 @@ class KeyboardScannerAscDescTest {
 	}
 
 	@Test
-	void test() {
+	void getArraySizeTest() {
 		fail("Not yet implemented");
 	}
 	

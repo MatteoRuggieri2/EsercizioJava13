@@ -10,10 +10,10 @@ public class KeyboardScannerAscDesc {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		int arraySize = getArraySize(sc, "Inserisci il numero di elementi che deve avere l'array, e premi \"Enter\"");		
+		int arraySize = getArraySize(sc);		
 		int[] arrayElements = getArrayElements(sc, arraySize);
 		
-		String order = getOrder();
+		String order = getOrder(sc);
 		
 		System.out.println("Numero di elementi: " + arraySize);
 		System.out.println("Ordinamento scelto: " + order);
@@ -28,7 +28,8 @@ public class KeyboardScannerAscDesc {
 	 * la dimensione dell'array.
 	 * Se ciò che viene fornito dall'utente non è di tipo int positivo verrà
 	 * richiesto all'infinito. */
-	protected int getArraySize(Scanner sc, String prompt) {
+	protected int getArraySize(Scanner sc) {
+		String prompt = "Inserisci il numero di elementi che deve avere l'array, e premi \\\"Enter\\\"";
 		return getValidPositiveInteger(sc, prompt);
 	}
 
@@ -54,8 +55,7 @@ public class KeyboardScannerAscDesc {
 	
 	/* Questo metodo ha il compito di recuperare la scelta dell'utente sull'ordinamento
 	 * dell'array */
-	protected String getOrder() {
-		Scanner sc = new Scanner(System.in);
+	protected String getOrder(Scanner sc) {
 		String errorMessage = "\nERROR:\nInput non valido. Per favore, inserisci \"ASC\" (crescente) o \"DESC\" (decrescente)";
 		String order = "";
 		
@@ -79,7 +79,7 @@ public class KeyboardScannerAscDesc {
 	}
 	
 	// Questo metodo ha il compito di validare il numero intero fornito dall'utente
-	protected int getValidPositiveInteger(Scanner sc, String prompt) {
+	private int getValidPositiveInteger(Scanner sc, String prompt) {
 		String errorMessage = "\nERROR:\nInput non valido. Per favore, inserisci un numero intero positivo.\n";
 		
 		// Finchè non ottengo un int positvo
@@ -102,7 +102,7 @@ public class KeyboardScannerAscDesc {
 	}
 	
 	// Questo metodo ha il compito di fornire un intero valido da parte dell'utente
-	protected int getValidInteger(Scanner sc, String prompt) {
+	private int getValidInteger(Scanner sc, String prompt) {
 		String errorMessage = "\nERROR:\nInput non valido. Per favore, inserisci un numero intero.\n";
 		
 		// Finchè non ottengo un int

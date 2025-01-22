@@ -60,7 +60,7 @@ public class KeyboardScannerAscDesc {
 		String order = "";
 		
 		while (true) {
-			System.out.println("Scegli ordinamento tra ASC o DESC");
+			System.out.println("Scegli ordinamento tra \"ASC\" (crescente) o \"DESC\" (decrescente)");
 			
 			if (sc.hasNext()) {
 				order = sc.next();

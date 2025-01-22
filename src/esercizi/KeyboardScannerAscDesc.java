@@ -8,7 +8,9 @@ public class KeyboardScannerAscDesc {
 
 	public void run() {
 		
-		int arraySize = getArraySize("Inserisci il numero di elementi che deve avere l'array, e premi \"Enter\"");		
+		Scanner sc = new Scanner(System.in);
+		
+		int arraySize = getArraySize(sc, "Inserisci il numero di elementi che deve avere l'array, e premi \"Enter\"");		
 		int[] arrayElements = getArrayElements(arraySize);
 		
 		String order = getOrder();
@@ -26,8 +28,8 @@ public class KeyboardScannerAscDesc {
 	 * la dimensione dell'array.
 	 * Se ciò che viene fornito dall'utente non è di tipo int positivo verrà
 	 * richiesto all'infinito. */
-	protected int getArraySize(String prompt) {
-		return getValidPositiveInteger(prompt);
+	protected int getArraySize(Scanner sc, String prompt) {
+		return getValidPositiveInteger(sc, prompt);
 	}
 
 	/* Questo metodo ritorna un array con i valori inseriti dall'utente */
@@ -77,8 +79,7 @@ public class KeyboardScannerAscDesc {
 	}
 	
 	// Questo metodo ha il compito di validare il numero intero fornito dall'utente
-	protected int getValidPositiveInteger(String prompt) {
-		Scanner sc = new Scanner(System.in);
+	protected int getValidPositiveInteger(Scanner sc, String prompt) {
 		String errorMessage = "\nERROR:\nInput non valido. Per favore, inserisci un numero intero positivo.\n";
 		
 		// Finchè non ottengo un int positvo

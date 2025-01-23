@@ -32,12 +32,19 @@ public class KeyboardScannerAscDesc {
 		String prompt = "Inserisci il numero di elementi che deve avere l'array, e premi \"Enter\"";
 		int size = 0;
 		boolean validOutput = false;
+		int attempts = 0; // Contatore per limitare i tentativi (utile nei test)
+		int maxAttempts = 3;
 		
 		while (!validOutput) {
 			try {
 				size = getValidPositiveInteger(sc, prompt);
+				validOutput = true;
 			} catch (IllegalArgumentException e) {
 				e.printStackTrace();
+				attempts++;
+				if (attempts >= maxAttempts) {
+					throw new IllegalArgumentException("\n\nERROR -> Superato il num max di tentativi! RIAVVIA IL PROGRAMMA!");
+				}
 			}			
 		}
 

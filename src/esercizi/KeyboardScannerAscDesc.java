@@ -32,8 +32,8 @@ public class KeyboardScannerAscDesc {
 		String prompt = "Inserisci il numero di elementi che deve avere l'array, e premi \"Enter\"";
 		int size = 0;
 		boolean validOutput = false;
-		int attempts = 0; // Contatore per limitare i tentativi (utile nei test)
-		int maxAttempts = 3;
+		int attempts = 0; // Contatore per limitare i tentativi (utile nel test JUnit)
+		int maxAttempts = 3; // Numero max di tentativi prima che il programma si fermi
 		
 		while (!validOutput) {
 			try {
@@ -121,7 +121,7 @@ public class KeyboardScannerAscDesc {
 	}
 	
 	// Questo metodo ha il compito di fornire un intero valido da parte dell'utente
-	private int getValidInteger(Scanner sc, String prompt) {
+	private int getValidInteger(Scanner sc, String prompt) throws IllegalArgumentException {
 		String errorMessage = "\nERROR:\nInput non valido. Per favore, inserisci un numero intero.\n";
 		
 		// Finchè non ottengo un int
@@ -134,6 +134,7 @@ public class KeyboardScannerAscDesc {
 		    } else {
 		        System.err.println(errorMessage);
 		        sc.next(); // Consuma il token non valido
+		        throw new IllegalArgumentException("Inserisci un intero!");
 		    }
 		}
 	}

@@ -38,4 +38,9 @@ class KeyboardScannerAscDescTest {
 		assertThrows(IllegalArgumentException.class, () -> ksad.getArraySize(sSc2));
 	}
 	
+	@Test
+	void getArrayElementsTest() {
+		
+	}
+	
 }

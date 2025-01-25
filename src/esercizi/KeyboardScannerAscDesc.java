@@ -5,6 +5,10 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 public class KeyboardScannerAscDesc {
+	
+	// Numero max di tentativi di inserimento input prima che il programma si fermi
+	int maxAttempts = 3;
+	String maxAttemptsErrorMessage = "\n\nERROR -> Superato il num max di tentativi! RIAVVIA IL PROGRAMMA!";
 
 	public void run() {
 		
@@ -31,9 +35,8 @@ public class KeyboardScannerAscDesc {
 	protected int getArraySize(Scanner sc) {
 		String prompt = "Inserisci il numero di elementi che deve avere l'array, e premi \"Enter\"";
 		int size = 0;
-		boolean validOutput = false;
+		boolean validOutput = false; // Serve a capire se il metodo è andato in exception o è andato a buon fine
 		int attempts = 0; // Contatore per limitare i tentativi (utile nel test JUnit)
-		int maxAttempts = 3; // Numero max di tentativi prima che il programma si fermi
 		
 		while (!validOutput) {
 			try {
@@ -43,7 +46,7 @@ public class KeyboardScannerAscDesc {
 				e.printStackTrace();
 				attempts++;
 				if (attempts >= maxAttempts) {
-					throw new IllegalArgumentException("\n\nERROR -> Superato il num max di tentativi! RIAVVIA IL PROGRAMMA!");
+					throw new IllegalArgumentException(maxAttemptsErrorMessage);
 				}
 			}			
 		}
@@ -53,9 +56,24 @@ public class KeyboardScannerAscDesc {
 
 	/* Questo metodo ritorna un array con i valori inseriti dall'utente */
 	protected int[] getArrayElements(Scanner sc, int n) {
+		boolean validOutput = false;
+		int attempts = 0; // Contatore per limitare i tentativi (utile nel test JUnit)
+		
 		int[] arr = new int[n];
 		for (int i = 0; i < n; i++) {
-			arr[i] = getValidInteger(sc, "Aggiungi elemento all'array - [pos: " + i + "]");
+			
+			while (!validOutput) {
+				try {
+					arr[i] = getValidInteger(sc, "Aggiungi elemento all'array - [pos: " + i + "]");
+				} catch (Exception e) {
+					e.printStackTrace();
+					attempts++;
+					if (attempts >= maxAttempts) {
+						throw new IllegalArgumentException(maxAttemptsErrorMessage);
+					}
+				}
+			}
+			
 		}
 		return arr;
 	}

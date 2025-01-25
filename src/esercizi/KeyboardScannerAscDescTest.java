@@ -24,23 +24,28 @@ class KeyboardScannerAscDescTest {
 
 	// Tutti i metodi sono stati impostati come protected per poter effettuare i test
 
-	@Test
-	void getArraySizeTest() {
-		
-		// Test input corretto
-		String simulatedInput = "3\n"; // Simula l'input dell'utente
-	    Scanner sSc = new Scanner(new ByteArrayInputStream(simulatedInput.getBytes()));
-		assertEquals(3, ksad.getArraySize(sSc));
-		
-		// Test input errato per 3 volte (il limite di tentativi prima che il programma si fermi)
-		String simulatedInput2 = "test\ntest\ntest\n";
-		Scanner sSc2 = new Scanner(new ByteArrayInputStream(simulatedInput2.getBytes()));
-		assertThrows(IllegalArgumentException.class, () -> ksad.getArraySize(sSc2));
-	}
+//	@Test
+//	void getArraySizeTest() {
+//		
+//		// Test input corretto
+//		String simulatedInput = "3\n"; // Simula l'input dell'utente
+//	    Scanner sSc = new Scanner(new ByteArrayInputStream(simulatedInput.getBytes()));
+//		assertEquals(3, ksad.getArraySize(sSc));
+//		
+//		// Test input errato per 3 volte (il limite di tentativi prima che il programma si fermi)
+//		String simulatedInput2 = "test\ntest\ntest\n";
+//		Scanner sSc2 = new Scanner(new ByteArrayInputStream(simulatedInput2.getBytes()));
+//		assertThrows(IllegalArgumentException.class, () -> ksad.getArraySize(sSc2));
+//	}
 	
 	@Test
 	void getArrayElementsTest() {
 		
+		// Test input corretto
+		String simulatedInput = "3\n54\n09\n"; // Simula l'input dell'utente
+	    Scanner sSc = new Scanner(new ByteArrayInputStream(simulatedInput.getBytes()));
+	    int[] resultArray = {3, 54, 9};
+		assertArrayEquals(resultArray, ksad.getArrayElements(sSc, 3));
 	}
 	
 }

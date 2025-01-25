@@ -61,10 +61,12 @@ public class KeyboardScannerAscDesc {
 		
 		int[] arr = new int[n];
 		for (int i = 0; i < n; i++) {
+			validOutput = false;
 			
 			while (!validOutput) {
 				try {
 					arr[i] = getValidInteger(sc, "Aggiungi elemento all'array - [pos: " + i + "]");
+					validOutput = true;
 				} catch (Exception e) {
 					e.printStackTrace();
 					attempts++;

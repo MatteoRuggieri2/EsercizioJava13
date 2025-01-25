@@ -81,7 +81,7 @@ public class KeyboardScannerAscDesc {
 	}
 	
 	// Questo metodo stampa gli array
-	protected void printArray(String arrName, int[] array) {
+	protected String printArray(String arrName, int[] array) {
 		String arrToString = "[";
 		for (int el : array) {
 			arrToString += ", " + el;
@@ -89,6 +89,8 @@ public class KeyboardScannerAscDesc {
 		arrToString = arrToString.replaceFirst(", ", "");
 		arrToString += "]\n";
 		System.out.println(arrName + ": " + arrToString);
+		
+		return arrName + ": " + arrToString;
 	}
 	
 	/* Questo metodo ha il compito di recuperare la scelta dell'utente sull'ordinamento

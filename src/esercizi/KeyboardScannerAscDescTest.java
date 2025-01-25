@@ -53,4 +53,12 @@ class KeyboardScannerAscDescTest {
 		assertThrows(IllegalArgumentException.class, () -> ksad.getArraySize(sSc2));
 	}
 	
+	@Test
+	void printArrayTest() {
+		
+		int[] intArray = {12, 4, 98};
+		String arrToString = "intArray: [12, 4, 98]\n";
+		assertEquals(arrToString, ksad.printArray("intArray", intArray));
+	}
+	
 }

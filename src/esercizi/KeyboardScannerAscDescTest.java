@@ -61,4 +61,33 @@ class KeyboardScannerAscDescTest {
 		assertEquals(arrToString, ksad.printArray("intArray", intArray));
 	}
 	
+	@Test
+	void getOrderingTest() {
+		
+		String correctAscInpUpp = "ASC";
+		String correctDescInpUpp = "DESC";
+		String correctAscInpLow = "asc";
+		String correctDescInpLow = "desc";
+		String correctAscInpCapital = "Asc";
+		String wrongMaxAttempts = "0asc\ndesc0\n10\n";
+		
+		Scanner correctAscInpUppSSC = new Scanner(new ByteArrayInputStream(correctAscInpUpp.getBytes()));
+		assertEquals("ASC", ksad.getOrdering(correctAscInpUppSSC));
+		
+		Scanner correctDescInpUppSCC = new Scanner(new ByteArrayInputStream(correctDescInpUpp.getBytes()));
+		assertEquals("DESC", ksad.getOrdering(correctDescInpUppSCC));
+		
+		Scanner correctAscInpLowSSC = new Scanner(new ByteArrayInputStream(correctAscInpLow.getBytes()));
+		assertEquals("ASC", ksad.getOrdering(correctAscInpLowSSC));
+		
+		Scanner correctDescInpLowSSC = new Scanner(new ByteArrayInputStream(correctDescInpLow.getBytes()));
+		assertEquals("DESC", ksad.getOrdering(correctDescInpLowSSC));
+		
+		Scanner correctAscInpCapitalSSC = new Scanner(new ByteArrayInputStream(correctAscInpCapital.getBytes()));
+		assertEquals("ASC", ksad.getOrdering(correctAscInpCapitalSSC));
+		
+		Scanner wrongMaxAttemptsSSC = new Scanner(new ByteArrayInputStream(wrongMaxAttempts.getBytes()));
+		assertThrows(IllegalArgumentException.class, () -> ksad.getOrdering(wrongMaxAttemptsSSC));
+	}
+	
 }

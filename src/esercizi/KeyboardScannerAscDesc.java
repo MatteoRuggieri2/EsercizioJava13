@@ -169,15 +169,6 @@ public class KeyboardScannerAscDesc {
 		}
 	}
 	
-	/* Questo metodo ordina l'array passato come argomento in base all'ordinamento
-	scelto dall'utente */
-	protected int[] orderArray(int[] arr, String order) {
-		if (order.equalsIgnoreCase("ASC")) {
-			return orderByAsc(arr);
-		} else {
-			return orderByDesc(arr);
-		}
-	}
 	
 	// Questo metodo ha il compito di ordinare in modo ASC un arr di int
 	protected int[] orderByAsc(int[] arr) {
@@ -206,4 +197,14 @@ public class KeyboardScannerAscDesc {
                 .toArray();
 	}
 
+	/* Questo metodo ordina l'array passato come argomento in base all'ordinamento
+	scelto dall'utente */
+	protected int[] orderArray(int[] arr, String order) {
+		if (order.equalsIgnoreCase("ASC")) {
+			return orderByAsc(arr);
+		} else {
+			return orderByDesc(arr);
+		}
+	}
+	
 } 

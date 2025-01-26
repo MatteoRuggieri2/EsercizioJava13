@@ -90,4 +90,12 @@ class KeyboardScannerAscDescTest {
 		assertThrows(IllegalArgumentException.class, () -> ksad.getOrdering(wrongMaxAttemptsSSC));
 	}
 	
+	@Test
+	void orderByAscTest() {
+		
+		int[] unsortedArr = {30, 10, 20};
+		int[] ascSortedArr = {10, 20, 30};
+		assertArrayEquals(unsortedArr, ksad.orderByAsc(unsortedArr));
+	}
+	
 }

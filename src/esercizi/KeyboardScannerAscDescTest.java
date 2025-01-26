@@ -95,7 +95,15 @@ class KeyboardScannerAscDescTest {
 		
 		int[] unsortedArr = {30, 10, 20};
 		int[] ascSortedArr = {10, 20, 30};
-		assertArrayEquals(unsortedArr, ksad.orderByAsc(unsortedArr));
+		assertArrayEquals(ascSortedArr, ksad.orderByAsc(unsortedArr));
+	}
+	
+	@Test
+	void orderByDescTest() {
+		
+		int[] unsortedArr = {30, 10, 20};
+		int[] descSortedArr = {30, 20, 10};
+		assertArrayEquals(descSortedArr, ksad.orderByDesc(unsortedArr));
 	}
 	
 }

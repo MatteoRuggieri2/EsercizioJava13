@@ -23,7 +23,7 @@ public class KeyboardScannerAscDesc {
 		System.out.println("Ordinamento scelto: " + order);
 		printArray("Array iniziale", arrayElements);
 		
-		printArray("Array ordinato", orderArray(arrayElements, order));
+		printArray("Array ordinato", sortArray(arrayElements, order));
 		
 	}
 	
@@ -199,7 +199,7 @@ public class KeyboardScannerAscDesc {
 
 	/* Questo metodo ordina l'array passato come argomento in base all'ordinamento
 	scelto dall'utente */
-	protected int[] orderArray(int[] arr, String order) {
+	protected int[] sortArray(int[] arr, String order) {
 		if (order.equalsIgnoreCase("ASC")) {
 			return orderByAsc(arr);
 		} else {

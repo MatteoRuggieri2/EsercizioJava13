@@ -17,7 +17,7 @@ public class KeyboardScannerAscDesc {
 		int arraySize = getArraySize(sc);		
 		int[] arrayElements = getArrayElements(sc, arraySize);
 		
-		String order = getOrder(sc);
+		String order = getOrdering(sc);
 		
 		System.out.println("Numero di elementi: " + arraySize);
 		System.out.println("Ordinamento scelto: " + order);
@@ -95,27 +95,35 @@ public class KeyboardScannerAscDesc {
 	
 	/* Questo metodo ha il compito di recuperare la scelta dell'utente sull'ordinamento
 	 * dell'array */
-	protected String getOrder(Scanner sc) {
+	protected String getOrdering(Scanner sc) throws IllegalArgumentException {
 		String errorMessage = "\nERROR:\nInput non valido. Per favore, inserisci \"ASC\" (crescente) o \"DESC\" (decrescente)";
+		boolean validOutput = false;
+		int attempts = 0; // Contatore per limitare i tentativi (utile nel test JUnit)
+		
 		String order = "";
 		
-		while (true) {
+		while (!validOutput) {
 			System.out.println("Scegli ordinamento tra \"ASC\" (crescente) o \"DESC\" (decrescente)");
 			
 			if (sc.hasNext()) {
 				order = sc.next();
-			} else {
-				System.err.println(errorMessage);
+				
+				if (order.equalsIgnoreCase("ASC") || order.equalsIgnoreCase("DESC")) {
+					validOutput = true;
+					return order.toUpperCase();
+				}
+				
 			}
 			
-			if (order.equalsIgnoreCase("ASC") || order.equalsIgnoreCase("DESC")) {
-				
-				return order.toUpperCase();
-			} else {
-				System.err.println(errorMessage);
+			attempts++;
+			System.err.println(errorMessage);
+			if (attempts >= maxAttempts) {
+				throw new IllegalArgumentException(maxAttemptsErrorMessage);
 			}
 			
 		}
+		
+		return order;
 	}
 	
 	// Questo metodo ha il compito di validare il numero intero fornito dall'utente
